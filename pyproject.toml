@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nave-cti"
+version = "0.1.0"
+description = "Núcleo local abierto para inteligencia de amenazas y auditoría defensiva"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+authors = [{name = "Proyecto NAVE"}]
+dependencies = []
+
+[project.scripts]
+nave = "nave.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

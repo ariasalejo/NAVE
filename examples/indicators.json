@@ -1,0 +1,34 @@
+[
+  {
+    "type": "domain",
+    "value": "example.org",
+    "source": "demo-reserved-domain",
+    "confidence": 50,
+    "labels": [
+      "demo",
+      "reserved"
+    ],
+    "notes": "Dominio reservado para ejemplos; no es una amenaza."
+  },
+  {
+    "type": "url",
+    "value": "https://example.org/documentation",
+    "source": "demo-reserved-domain",
+    "confidence": 50,
+    "labels": [
+      "demo"
+    ],
+    "notes": "URL ilustrativa."
+  },
+  {
+    "type": "sha256",
+    "value": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "source": "demo-known-empty-file-hash",
+    "confidence": 50,
+    "labels": [
+      "demo",
+      "hash"
+    ],
+    "notes": "Hash conocido de un archivo vacío; no representa malware."
+  }
+]

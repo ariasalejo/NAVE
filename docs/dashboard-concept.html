@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NAVE · Centro de Inteligencia</title>
+<style>
+:root{color-scheme:dark;--bg:#080d18;--panel:#101a2c;--line:#263a56;--cyan:#62d9ff;--text:#eaf3ff;--muted:#91a5c1}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#142745,var(--bg) 60%);font:15px system-ui;color:var(--text)}
+header{padding:24px 5vw;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:20px}
+.logo{font-size:1.5rem;font-weight:800;letter-spacing:.15em}.logo span{color:var(--cyan)}.badge{border:1px solid #3b6787;border-radius:99px;padding:7px 12px;color:var(--cyan)}
+main{max-width:1400px;margin:auto;padding:28px 5vw}.intro{margin:12px 0 26px}.intro h1{font-size:clamp(2rem,4vw,3.5rem);margin:.2em 0}.intro p{color:var(--muted);max-width:780px;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.card{background:linear-gradient(145deg,#14223a,#0d1627);border:1px solid var(--line);border-radius:15px;padding:20px;box-shadow:0 16px 40px #0002}.label{color:var(--muted);font-size:.85rem}.value{font-size:2rem;font-weight:750;margin:12px 0}.value small{font-size:.8rem;color:var(--cyan)}.wide{grid-column:span 2}.card h2{font-size:1rem;margin:0 0 16px}.bar{height:9px;background:#1e3049;border-radius:9px;margin:14px 0;overflow:hidden}.bar i{display:block;height:100%;width:var(--w);background:linear-gradient(90deg,#2a93ff,var(--cyan));border-radius:9px}.notice{margin-top:20px;padding:15px;border-left:3px solid var(--cyan);background:#0f1d31;color:#afc4df;line-height:1.6}footer{padding:25px 5vw;color:var(--muted);border-top:1px solid var(--line);margin-top:32px}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.wide{grid-column:span 2}}@media(max-width:520px){.grid{grid-template-columns:1fr}.wide{grid-column:span 1}header{align-items:flex-start;flex-direction:column}}
+</style></head>
+<body><header><div class="logo">✳ NAVE<span> / CTI</span></div><div class="badge">MVP LOCAL · DATOS DE DEMOSTRACIÓN</div></header>
+<main><section class="intro"><div class="label">CENTRO ABIERTO DE INTELIGENCIA Y AUDITORÍA</div><h1>Entender las señales.<br><span style="color:var(--cyan)">Conservar la evidencia.</span></h1><p>Panel visual conceptual para el proyecto NAVE. Los números de abajo son marcadores de interfaz, no métricas reales ni datos conectados a OpenCTI.</p></section>
+<section class="grid">
+<article class="card"><div class="label">Indicadores registrados</div><div class="value">—</div><div class="label">Pendiente conectar con SQLite/API</div></article>
+<article class="card"><div class="label">Fuentes verificadas</div><div class="value">—</div><div class="label">Procedencia por validar</div></article>
+<article class="card"><div class="label">Casos abiertos</div><div class="value">—</div><div class="label">Módulo futuro</div></article>
+<article class="card"><div class="label">Estado del sistema</div><div class="value"><small>LOCAL</small></div><div class="label">Sin servicios remotos</div></article>
+<article class="card wide"><h2>Flujo de inteligencia</h2><div class="label">Ingestión explícita · Normalización · Deduplicación · Evidencias</div><div class="bar"><i style="--w:25%"></i></div><div class="label">Fase actual: núcleo local inicial</div><div class="bar"><i style="--w:10%"></i></div><div class="label">STIX/TAXII: no implementado todavía</div></article>
+<article class="card wide"><h2>Principios de operación</h2><p>◈ Solo fuentes identificables<br>◈ No ejecutar contenido importado<br>◈ Mantener trazabilidad y fechas<br>◈ Aprobación humana para acciones sensibles</p></article>
+</section><div class="notice"><strong>Estado honesto:</strong> esta página es una maqueta estática. No presenta información en vivo, no autentica usuarios y no sustituye un SIEM, TIP o plataforma SOC.</div></main>
+<footer>NAVE · Proyecto abierto en desarrollo · Revisa SECURITY.md antes de usar datos reales.</footer></body></html>
