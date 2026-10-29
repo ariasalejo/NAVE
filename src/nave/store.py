@@ -98,7 +98,8 @@ def add_indicator(con: sqlite3.Connection, item: dict) -> bool:
     else:
         con.execute("UPDATE indicators SET last_seen=? WHERE content_hash=?", (now, digest))
         log_event(con, "indicator.duplicate", {"type": kind, "source": source, "hash": digest})
-    con.commit()
+    # The caller owns the transaction. This lets batch imports commit or roll back
+    # all indicator and audit-log changes together.
     return inserted
 
 
@@ -111,7 +112,8 @@ def log_event(con: sqlite3.Connection, action: str, detail: dict) -> None:
 
 def list_indicators(con: sqlite3.Connection) -> list[sqlite3.Row]:
     return list(con.execute(
-        "SELECT id,kind,value,source,confidence,labels_json,first_seen,last_seen "
+        "SELECT id,kind,value,normalized_value,source,confidence,"
+        "labels_json,first_seen,last_seen "
         "FROM indicators ORDER BY id DESC"
     ))
 
