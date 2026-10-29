@@ -35,26 +35,37 @@ def cmd_ingest(args: argparse.Namespace) -> int:
         return 2
     try:
         data = json.loads(source.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError) as exc:
+    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
         print(f"Error leyendo JSON: {exc}", file=sys.stderr)
         return 2
     if not isinstance(data, list):
         print("Error: la raíz del JSON debe ser una lista.", file=sys.stderr)
         return 2
+
     inserted = duplicates = 0
-    with connect() as con:
-        for number, item in enumerate(data, 1):
-            if not isinstance(item, dict):
-                print(f"Error en elemento {number}: se esperaba un objeto.", file=sys.stderr)
-                return 2
-            try:
-                if add_indicator(con, item):
-                    inserted += 1
-                else:
-                    duplicates += 1
-            except ValueError as exc:
-                print(f"Error en elemento {number}: {exc}", file=sys.stderr)
-                return 2
+    try:
+        # The connection context commits only if the entire batch succeeds.
+        # Any invalid record raises an exception and rolls back the whole batch.
+        with connect() as con:
+            for number, item in enumerate(data, 1):
+                if not isinstance(item, dict):
+                    raise ValueError(
+                        f"Error en elemento {number}: se esperaba un objeto."
+                    )
+                try:
+                    if add_indicator(con, item):
+                        inserted += 1
+                    else:
+                        duplicates += 1
+                except ValueError as exc:
+                    raise ValueError(f"Error en elemento {number}: {exc}") from exc
+    except ValueError as exc:
+        print(str(exc), file=sys.stderr)
+        return 2
+    except (OSError, sqlite3.Error) as exc:
+        print(f"Error de base de datos durante la importación: {exc}", file=sys.stderr)
+        return 2
+
     print(f"Importación terminada: {inserted} nuevos; {duplicates} duplicados.")
     return 0
 
